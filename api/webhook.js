@@ -6,15 +6,10 @@ export default function handler(req, res) {
 
     const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'paperbot123';
 
-    if (mode && token) {
-      if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-        console.log('WEBHOOK_VERIFIED');
-        return res.status(200).send(challenge);
-      } else {
-        return res.status(403).send('Token incorrecto');
-      }
+    if (mode && token === VERIFY_TOKEN && mode === 'subscribe') {
+      return res.status(200).send(challenge);
     }
-    return res.status(200).send('Servidor activo de Paper Please');
+    return res.status(403).send('Verificación fallida');
   }
 
   return res.status(200).send('OK');
