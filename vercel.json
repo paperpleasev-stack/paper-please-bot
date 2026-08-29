@@ -1,7 +1,7 @@
 {
-  "functions": {
-    "api/webhook.js": {
-      "maxDuration": 30
-    }
-  }
+  "buildCommand": null,
+  "outputDirectory": null,
+  "routes": [
+    { "src": "/api/webhook", "dest": "/api/webhook.js" }
+  ]
 }
