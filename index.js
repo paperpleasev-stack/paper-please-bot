@@ -1,3 +1,3 @@
 export default function handler(req, res) {
-  res.status(200).json({ status: "Paper Please Bot is running!" });
+  return res.status(200).json({ status: "OK", message: "Paper Please Bot is active" });
 }
