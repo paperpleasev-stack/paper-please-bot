@@ -1,5 +1,7 @@
 {
-  "routes": [
-    { "src": "/api/webhook", "dest": "/api/webhook.js" }
-  ]
+  "functions": {
+    "api/webhook.js": {
+      "maxDuration": 30
+    }
+  }
 }
