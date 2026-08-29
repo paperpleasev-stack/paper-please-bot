@@ -4,12 +4,20 @@ export default function handler(req, res) {
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
 
+    // Imprimir en los logs de Vercel lo que llegó exactamente
+    console.log("MODO RECIBIDO:", mode);
+    console.log("TOKEN RECIBIDO:", token);
+    console.log("CHALLENGE RECIBIDO:", challenge);
+
     const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'paperbot123';
 
-    if (mode && token === VERIFY_TOKEN && mode === 'subscribe') {
+    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+      console.log('WEBHOOK_VERIFIED EXITOSO');
       return res.status(200).send(challenge);
     }
-    return res.status(403).send('Verificación fallida');
+    
+    console.log('Fallo de validación. Token esperado:', VERIFY_TOKEN, 'Token recibido:', token);
+    return res.status(403).send(`Verificación fallida. Recibido token: ${token}`);
   }
 
   return res.status(200).send('OK');
